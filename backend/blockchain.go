@@ -59,7 +59,7 @@ func main() {
 		log.Fatalf("Failed to get network: %v", err)
 	}
 
-	contract := network.GetContract("basic")
+	contract := network.GetContract("landchain")
 
 	log.Println("--> Submit Transaction: InitLedger, function creates the initial set of assets on the ledger")
 	result, err := contract.SubmitTransaction("InitLedger")
