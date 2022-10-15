@@ -3,6 +3,7 @@ package chaincode
 import (
 	"bytes"
 	"encoding/json"
+	"flowteam/landchain/types"
 	"fmt"
 	"strconv"
 	"strings"
@@ -17,29 +18,7 @@ type SmartContract struct {
 	contractapi.Contract
 }
 
-type NotarialAct struct {
-	ID          string `json:"id"`
-	Type        string `json:"type"`
-	Date        string `json:"date"`
-	Number      string `json:"number"`
-	Description string `json:"description"`
-	Price       string `json:"price"`
-}
-
-type Party struct {
-	PESEL     string `json:"pesel"`
-	FirstName string `json:"firstName"`
-	LastName  string `json:"lastName"`
-	PubKey    string `json:"pubKey"`
-}
-
-type Request struct {
-	ID        string  `json:"id"`
-	Parties   []Party `json:"parties"`
-	Signature string  `json:"signature"`
-}
-
-func (t *SmartContract) Approve(ctx contractapi.TransactionContextInterface, deviceId string, value int, measurementUnit string, creationTimeRFC3339 string) error {
+func (t *SmartContract) CreateRequest(ctx contractapi.TransactionContextInterface, deviceId string, value int, measurementUnit string, creationTimeRFC3339 string) error {
 	creationTime, err := time.Parse(time.RFC3339, creationTimeRFC3339)
 	if err != nil {
 		return err
@@ -54,11 +33,8 @@ func (t *SmartContract) Approve(ctx contractapi.TransactionContextInterface, dev
 	timeframe = creationTime.Format("2006-01")
 	updateAggregation(ctx, deviceId, timeframe, value)
 
-	log := &Log{
-		SensorID:        deviceId,
-		CreationTime:    creationTime.Format(time.RFC3339),
-		Value:           value,
-		MeasurementUnit: measurementUnit,
+	log := &types.Request{
+		CreationTime: creationTime.Format(time.RFC3339), // 2006-01-02T15:04:05Z07:00
 	}
 	assetBytes, err := json.Marshal(log)
 	if err != nil {
