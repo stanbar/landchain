@@ -17,23 +17,29 @@ type SmartContract struct {
 	contractapi.Contract
 }
 
-type Log struct {
-	SensorID        string `json:"sensorId"`
-	CreationTime    string `json:"creationTime"`
-	Value           int    `json:"value"`
-	MeasurementUnit string `json:"measurementUnit"` // HUMD, TEMP
+type NotarialAct struct {
+	ID          string `json:"id"`
+	Type        string `json:"type"`
+	Date        string `json:"date"`
+	Number      string `json:"number"`
+	Description string `json:"description"`
+	Price       string `json:"price"`
 }
 
-type Aggregation struct {
-	SensorID  string `json:"sensorId"`
-	TimeFrame string `json:"timeFrame"`
-	Sum       int    `json:"sum"`
-	Count     int    `json:"count"`
-	Max       int    `json:"max"`
-	Min       int    `json:"min"`
+type Party struct {
+	PESEL     string `json:"pesel"`
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
+	PubKey    string `json:"pubKey"`
 }
 
-func (t *SmartContract) SetSensorState(ctx contractapi.TransactionContextInterface, deviceId string, value int, measurementUnit string, creationTimeRFC3339 string) error {
+type Request struct {
+	ID        string  `json:"id"`
+	Parties   []Party `json:"parties"`
+	Signature string  `json:"signature"`
+}
+
+func (t *SmartContract) Approve(ctx contractapi.TransactionContextInterface, deviceId string, value int, measurementUnit string, creationTimeRFC3339 string) error {
 	creationTime, err := time.Parse(time.RFC3339, creationTimeRFC3339)
 	if err != nil {
 		return err
