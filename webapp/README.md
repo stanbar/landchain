@@ -36,3 +36,17 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Views
+
+1. Create Request
+On backend, call `chaincode.CreateRequest()`
+
+2. View All Waiting For Approval Requests
+On backend, call `chaincode.GetAllRequestsWaitingForApproval()`
+2.1 Add two buttons
+- Accept. Call on backend `chaincode.AcceptRequest(request.ID)`
+- Reject. Call on backend `chaincode.RejectRequest(request.ID)`
+
+3. View All Lands
+On backend, call `chaincode.GetAllLands()`
