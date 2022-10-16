@@ -1,23 +1,9 @@
 <script lang="ts">
-    import { Button, StructuredList, StructuredListHead, StructuredListRow, StructuredListCell, StructuredListBody, Link } from "carbon-components-svelte";
+    import { StructuredList, StructuredListHead, StructuredListRow, StructuredListCell, StructuredListBody, Link } from "carbon-components-svelte";
     import {State, type SignedRequest} from '$lib/types';
+	import { grzechu, stachu, mikolaj } from "$lib/people";
   
     const landID = "GD1G/00000123/1";
-    const grzechu = {
-        name: "Grzegorz Barański",
-        pesel: "04123456789",
-        publicKey: "",
-    };
-    const stachu = {
-        name: "Stanisław Barański",
-        pesel: "95987654321",
-        publicKey: "",
-    };
-    const notary = {
-        name: "Mikołaj Peglau",
-        pesel: "12345678901",
-        publicKey: "",
-    };
 
     const requests: SignedRequest[] = [{
         id: "",
@@ -34,14 +20,14 @@
         newOwner: stachu,
         previousNotarialAct: {
             landID,
-            notary,
+            notary: mikolaj,
             creationDate: "",
             description: "Transfer własności działki.",
             owner: grzechu
         },
         newNotarialAct: {
             landID,
-            notary,
+            notary: mikolaj,
             creationDate: "",
             description: "Odziedziczenie działki w spadku.",
             owner: stachu,
