@@ -47,16 +47,17 @@ const (
 
 type Request struct {
 	LandID              string       `json:"landID"`
-	State               State        `json:"state"`
 	CreationTime        string       `json:"creationTime"`
 	Parties             []Individual `json:"parties"`
 	Intermediary        Individual   `json:"intermediary"`
 	NewOwner            Owner        `json:"newOwner"`
 	PreviousNotarialAct NotarialAct  `json:"previousNotarialAct"`
+	NewNotarialAct      NotarialAct  `json:"newNotarialAct"`
 }
 
 type SignedRequest struct {
 	ID         string   `json:"id"`
+	State      State    `json:"state"`
 	Signatures []string `json:"signatures"`
 	Request
 }
