@@ -1,15 +1,17 @@
 <script lang="ts">
     import { StructuredList, StructuredListHead, StructuredListRow, StructuredListCell, StructuredListBody, Link } from "carbon-components-svelte";
     import {State, type SignedRequest} from '$lib/types';
-	import { grzechu, stachu, mikolaj } from "$lib/people";
+	import { grzechu, stachu, mikolaj, dominika } from "$lib/people";
   
-    const landID = "GD1G/00000123/1";
+    const firstLandID = "GD1G/00000123/1";
+    const secondLandID = "WA1M/00005124/9";
 
-    const requests: SignedRequest[] = [{
+    const requests: SignedRequest[] = [
+        {
         id: "",
         signatures: ["sig1", "sig2"],
         state: State.WAITING_FOR_APPROVAL,
-        landID,
+        landID: firstLandID,
         creationTime: "2022-10-16 03:13:11",
         parties: [grzechu, stachu],
         intermediary: {
@@ -19,20 +21,45 @@
          },
         newOwner: stachu,
         previousNotarialAct: {
-            landID,
+            landID: firstLandID,
             notary: mikolaj,
             creationDate: "",
             description: "Transfer własności działki.",
             owner: grzechu
         },
         newNotarialAct: {
-            landID,
+            landID: firstLandID,
             notary: mikolaj,
             creationDate: "",
             description: "Odziedziczenie działki w spadku.",
             owner: stachu,
         },
-    }]; 
+    },
+    {
+        id: "",
+        signatures: ["sig1", "sig2"],
+        state: State.WAITING_FOR_APPROVAL,
+        landID: secondLandID,
+        creationTime: "2022-10-16 06:13:11",
+        parties: [dominika, mikolaj],
+        intermediary: grzechu,
+        newOwner: mikolaj,
+        previousNotarialAct: {
+            landID: secondLandID,
+            notary: stachu,
+            creationDate: "",
+            description: "Odziedziczenie działki w spadku.",
+            owner: dominika
+        },
+        newNotarialAct: {
+            landID: secondLandID,
+            notary: stachu,
+            creationDate: "",
+            description: "Transfer własności działki.",
+            owner: mikolaj,
+        },
+    }
+]; 
     
     const onConfirm = (request: SignedRequest) => {
         alert(`confirming ${request.id}`);
