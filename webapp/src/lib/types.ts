@@ -22,7 +22,7 @@ export type NotarialAct = {
 export type Land = {
     id: string;
     address: string;
-    owner: string;
+    owner: Owner;
     area: number;
     mortgage: Mortgage;
     notarialAct: NotarialAct;
