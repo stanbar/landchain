@@ -27,6 +27,7 @@
   
   const onSubmit = () => {
     console.log({request});
+    alert("Zgłoszenie zostało wysłane do sieci blockchain")
 
   };
 </script>
@@ -56,10 +57,10 @@
   </Grid>
 
   
-  <h3>Pośrednik</h3>
+  <h3>Notariusz</h3>
   <TextInput labelText="Nazwa" bind:value={request.intermediary.name} />
   <br/>
-  <TextInput labelText="Numer PESEL" bind:value={request.intermediary.pesel} />
+  <TextInput labelText="Numer licencji notarialnej" bind:value={request.intermediary.pesel} />
   <br/><br/>
 
   <h3>Akt Notarialny</h3>
@@ -71,7 +72,24 @@
   <TextArea labelText="Opis" bind:value={request.notarialAct.description}/>
   <br/><br/>
 
-  <Button icon={Add} on:click={onSubmit}>Dodaj</Button>
+  <Grid>
+    <Row>
+      <Column>
+        <Button class="btn" icon={Add} >Dodaj podpis sprzedający</Button>
+      </Column>
+      <Column>
+        <Button class="btn" icon={Add} >Dodaj podpis kupującego</Button>
+      </Column>
+      <Column>
+        <Button class="btn" icon={Add} >Dodaj podpis notariusza</Button>
+      </Column>
+    </Row>
+  </Grid>
+  <br/>
+        <Button class="btn" icon={Add} on:click={onSubmit}>Wyślij zgłoszenie</Button>
+  <br/>
+  <br/>
+
 </div>
 <style>
   .content {
@@ -79,5 +97,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .btn {
+    margin: 0 auto;
+    width: 500px;
   }
 </style>

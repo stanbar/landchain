@@ -124,6 +124,7 @@
   .content {
     margin: 0 auto;
     display: flex;
+    padding: 100px;
     flex-direction: column;
     align-items: center;
   }
