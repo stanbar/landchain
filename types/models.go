@@ -36,7 +36,6 @@ type Land struct {
 type State = string
 
 const (
-	Submitted          State = "SUBMITTED"
 	Blocked            State = "BLOCKED"
 	Rejected           State = "REJECTED"
 	Accepted           State = "ACCEPTED"
