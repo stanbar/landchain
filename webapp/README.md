@@ -40,7 +40,9 @@ You can preview the production build with `npm run preview`.
 ## Views
 
 1. Create Request
-On backend, call `chaincode.CreateRequest()`
+1.1. Create request object.
+1.2. Add button "Add signature", which adds signature to the request.
+1.3. On backend, call `chaincode.SubmitRequest(signedRequest)`
 
 2. View All Waiting For Approval Requests
 On backend, call `chaincode.GetAllRequestsWaitingForApproval()`
