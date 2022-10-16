@@ -1,5 +1,12 @@
 package types
 
+type Individual struct {
+	PESEL     string `json:"pesel"`
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
+	PublicKey string `json:"publicKey"`
+}
+
 type Owner struct {
 	Share uint `json:"share"`
 	Individual
@@ -10,21 +17,21 @@ type Mortgage struct {
 	Amount   uint   `json:"amount"`
 }
 
-type Land struct {
-	ID          string      `json:"id"`
-	Address     string      `json:"address"`
-	Owners      []Owner     `json:"owners"`
-	Area        uint        `json:"area"`
-	Mortgage    Mortgage    `json:"mortgage"`
-	NotarialAct NotarialAct `json:"notarialAct"`
-}
-
 type NotarialAct struct {
 	LandID       string     `json:"landID"`
 	Notary       Individual `json:"notary"`
 	CreationDate string     `json:"creationDate"`
 	Description  string     `json:"description"`
 	Owner        Individual `json:"owner"`
+}
+
+type Land struct {
+	ID          string      `json:"id"`
+	Address     string      `json:"address"`
+	Owner       Owner       `json:"owner"`
+	Area        uint        `json:"area"`
+	Mortgage    Mortgage    `json:"mortgage"`
+	NotarialAct NotarialAct `json:"notarialAct"`
 }
 
 type State = string
@@ -51,16 +58,4 @@ type SignedRequest struct {
 	ID         string   `json:"id"`
 	Signatures []string `json:"signatures"`
 	Request
-}
-
-type Individual struct {
-	PESEL     string `json:"pesel"`
-	FirstName string `json:"firstName"`
-	LastName  string `json:"lastName"`
-	PublicKey string `json:"publicKey"`
-}
-
-type Pair[T, U any] struct {
-	First  T
-	Second U
 }
