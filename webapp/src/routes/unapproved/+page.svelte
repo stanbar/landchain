@@ -83,6 +83,7 @@
                 <StructuredListCell head>Pośrednik</StructuredListCell>
                 <StructuredListCell head>Poprzedni akt notarialny</StructuredListCell>
                 <StructuredListCell head>Nowy akt notarialny</StructuredListCell>
+                <StructuredListCell head>Status</StructuredListCell>
                 <StructuredListCell head>Akcja</StructuredListCell>
             </StructuredListRow>
         </StructuredListHead>
@@ -111,7 +112,11 @@
                         {request.newNotarialAct.description}
                     </StructuredListCell>
                     <StructuredListCell>
+                        {request.state}
+                    </StructuredListCell>
+                    <StructuredListCell>
                         <Link on:click={() => onConfirm(request)}>Zatwierdź</Link>
+                        <Link on:click={() => onConfirm(request)}>Zapłać</Link>
                         <Link on:click={() => onReject(request)} style="color: red;">Odrzuć</Link>
                     </StructuredListCell>
                 </StructuredListRow>

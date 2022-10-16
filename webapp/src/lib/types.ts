@@ -29,12 +29,12 @@ export type Land = {
 };
 
 export enum State {
-    SUBMITTED,
-    BLOCKED,
-    REJECTED,
-    ACCEPTED,
-    WAITING_FOR_PAYMENT,
-    WAITING_FOR_APPROVAL
+    SUBMITTED = "Submitted",
+    BLOCKED = "Blocked",
+    REJECTED = "Rejected",
+    ACCEPTED= "Accepted",
+    WAITING_FOR_PAYMENT = "Waiting for payment",
+    WAITING_FOR_APPROVAL = "Waiting for approval",
 };
 
 export type Request = {
