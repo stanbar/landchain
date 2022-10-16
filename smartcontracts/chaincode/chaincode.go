@@ -18,20 +18,11 @@ type SmartContract struct {
 	contractapi.Contract
 }
 
-func (t *SmartContract) CreateRequest(ctx contractapi.TransactionContextInterface, deviceId string, value int, measurementUnit string, creationTimeRFC3339 string) error {
+func (t *SmartContract) AddDevice(ctx contractapi.TransactionContextInterface, deviceId string, value int, measurementUnit string, creationTimeRFC3339 string) error {
 	creationTime, err := time.Parse(time.RFC3339, creationTimeRFC3339)
 	if err != nil {
 		return err
 	}
-
-	timeframe := creationTime.Format("2006-01-02T15:04")
-	updateAggregation(ctx, deviceId, timeframe, value)
-	timeframe = creationTime.Format("2006-01-02T15")
-	updateAggregation(ctx, deviceId, timeframe, value)
-	timeframe = creationTime.Format("2006-01-02")
-	updateAggregation(ctx, deviceId, timeframe, value)
-	timeframe = creationTime.Format("2006-01")
-	updateAggregation(ctx, deviceId, timeframe, value)
 
 	log := &types.Request{
 		CreationTime: creationTime.Format(time.RFC3339), // 2006-01-02T15:04:05Z07:00
