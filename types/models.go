@@ -1,9 +1,8 @@
 package types
 
 type Individual struct {
+	Name      string `json:"name"`
 	PESEL     string `json:"pesel"`
-	FirstName string `json:"firstName"`
-	LastName  string `json:"lastName"`
 	PublicKey string `json:"publicKey"`
 }
 
