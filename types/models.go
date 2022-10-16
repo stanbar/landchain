@@ -51,6 +51,7 @@ type Request struct {
 	CreationTime        string       `json:"creationTime"`
 	Parties             []Individual `json:"parties"`
 	Intermediary        Individual   `json:"intermediary"`
+	NewOwner            Owner        `json:"newOwner"`
 	PreviousNotarialAct NotarialAct  `json:"previousNotarialAct"`
 }
 
